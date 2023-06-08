@@ -5,7 +5,7 @@ def inicial():
     print(f"{'Sou o Calculon o senhor das calculadoras':^60}")
     print('-'*60)
     print(f"{'Operações Basicas:'}")
-    print('[1] Adição\n[2] Subtração\n[3] Multiplicação\n[4] Divisão')
+    print('[1] Adição | Subtração | Multiplicação | Divisão')
     print('-'*60)
     print('[9] Limpar\n[0] Exit')
     print('-'*60)

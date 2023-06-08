@@ -1,22 +1,16 @@
 
-cores = ('\033[m', #0 - sem cor
-        '\033[0;31m', #1 - vermelho
-        '\033[0;32m', #2 - verde
-        '\033[0;33m', #3 - amarelo
-        )
+from extras import cores
 
 class OpBasicas:
-    def soma():
-        valores = 0
-        print('Informe a quantidade de números que deseja somar.\nPara finalizar a soma digite [0]')
+    
+    def basicas():
         while True:
             try:
-                entrada_user = float(input('Número: '))
+                entrada = input('Digite a sua conta ou formula: ')
+                return eval(entrada)
+            
+            except SyntaxError:
+                print(cores[1],'Erro formula invalida!',cores[0])
 
-                if entrada_user == 0:
-                    return valores
-                else:
-                    valores += entrada_user
-
-            except ValueError:
-                print(cores[1],'Erro entrada invalida!',cores[0])
+            except TypeError:
+                print(cores[1],'Erro formula invalida!',cores[0])
