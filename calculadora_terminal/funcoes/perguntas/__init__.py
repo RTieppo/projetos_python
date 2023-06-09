@@ -4,7 +4,7 @@ def pbasicas():
     
     while True:
         try:
-            continua = str(input('Realizar outra operação? [S/N]: ')).upper().strip()[0]
+            continua = str(input('Gostaria de fazer outra? [S/N]: ')).upper().strip()[0]
 
             if continua in 'SN':
                 if continua == 'S':

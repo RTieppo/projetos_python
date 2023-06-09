@@ -1,11 +1,12 @@
 
+from extras import cores
 
 def inicial():
     print(f"{'Bem-vindo!':-^60}")
     print(f"{'Sou o Calculon o senhor das calculadoras':^60}")
     print('-'*60)
     print(f"{'Operações Basicas:'}")
-    print('[1] Adição | Subtração | Multiplicação | Divisão')
+    print('[1] Adição | Subtração | Multiplicação | Divisão | Potência')
     print('-'*60)
     print('[9] Limpar\n[0] Exit')
     print('-'*60)
@@ -13,3 +14,11 @@ def inicial():
 def fim():
     print('-'*60)
     print(f"{'Até a Proxima...':^60}")
+
+def basicas():
+    print(f"{'Calculando Fórmulas Básicas':-^60}")
+    print('Exemplo de formula Básica:')
+    print(cores[3],f"{'4/2*3+(4+6*2)+18/3-8':^60}",cores[0])
+    print('Exemplo de formula Com Potência:')
+    print(cores[3],f"{'4/2*3+(4+6*2)+18/3**2-8':>43}",cores[0])
+    print('-'*60)
