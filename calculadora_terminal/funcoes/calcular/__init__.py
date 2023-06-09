@@ -1,4 +1,5 @@
 import os
+from math import factorial
 from extras import cores
 from funcoes import perguntas
 from funcoes import print_terminal as p
@@ -21,7 +22,6 @@ class OpBasicas:
                 if perguntar == False:
                     os.system('cls' if os.name == 'nt' else 'clear')
                     return True
-
                 
                 else:
                     print('-'*60)
@@ -30,8 +30,67 @@ class OpBasicas:
             
             except SyntaxError:
                 print(cores[1],'Erro formula invalida!',cores[0])
+                print('-'*60)
 
             except TypeError:
                 print(cores[1],'Erro formula invalida!',cores[0])
+                print('-'*60)
+    
+    def factor():
+        os.system('cls' if os.name == 'nt' else 'clear')
+        p.factori()
+
+        while True:
+            try:
+                entrada = int(input('Qual Nº você quer fatorar? '))
+                calculo = str(input('Gostaria de ver o calculo? [S/N] ')).upper().strip()[0]
+
+                if calculo in 'SN':
+
+                    if calculo == 'S':
+                        multiplicador = 1
+                        for num in range(entrada, 0, -1):
+                            print(cores[2],f'{num}', end=' ')
+                            if num != 1:
+                                print('x', end='')
+                            multiplicador *= num
+                        print(f'= {multiplicador}',cores[0])
+                        print('-'*60)
+
+                        perguntar = perguntas.pbasicas()
+
+                        if perguntar == False:
+                            os.system('cls' if os.name == 'nt' else 'clear')
+                            return True
+                        
+                        else:
+                            print('-'*60)
+                            continue
+
+                    else:
+                        print(cores[2],f'O resultado da sua conta é {factorial(entrada)}',cores[0])
+                        print('-'*60)
+                        perguntar = perguntas.pbasicas()
+
+                        if perguntar == False:
+                            os.system('cls' if os.name == 'nt' else 'clear')
+                            return True
+                        
+                        else:
+                            print('-'*60)
+                            continue
+                
+                else:
+                    print(cores[1],'Erro entradas invalidas!',cores[0])
+                    print('-'*60)
+
+
+            except ValueError:
+                print(cores[1],'Erro entrada invalida!',cores[0])
+                print('-'*60)
+            
+            except IndexError:
+                print('-'*60)
+                print(cores[1],'Erro entrada invalida!',cores[0])
     
     
