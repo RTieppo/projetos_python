@@ -12,7 +12,7 @@ def inicia():
     while True:
         try:
 
-            print(cores[2],'Escolha uma das opções acima [1,2,9,0]',cores[0], end='')
+            print(cores[2],'Escolha uma das opções acima [1,2,3,9,0]',cores[0], end='')
 
             escolha_user = int(input(': '))
 
@@ -20,15 +20,20 @@ def inicia():
                 print(cores[1],'Erro entrada invalida!',cores[0])
             
             elif escolha_user == 1:
-                
-                opbasica = calcular.OpBasicas.basicas()
+                opbasica = calcular.OpMatematicas.basicas()
                 if opbasica == True:
                     p.inicial()
             
             elif escolha_user == 2:
-                opfact = calcular.OpBasicas.factor()
+                opfact = calcular.OpMatematicas.factor()
 
                 if opfact == True:
+                    p.inicial()
+
+            elif escolha_user == 3:
+                optabuada = calcular.OpMatematicas.tabuada()
+
+                if optabuada == True:
                     p.inicial()
 
             elif escolha_user == 9:
