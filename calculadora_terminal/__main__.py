@@ -12,8 +12,7 @@ def inicia():
     while True:
         try:
 
-            print(cores[2],'Escolha uma das opções acima [1,2,3,9,0]',cores[0], end='')
-
+            print(cores[2],'Escolha uma das opções acima [1,2,3,4,9,0]',cores[0], end='')
             escolha_user = int(input(': '))
 
             if escolha_user > 9:
@@ -31,6 +30,12 @@ def inicia():
                     p.inicial()
 
             elif escolha_user == 3:
+                opraiz = calcular.OpMatematicas.raiz()
+
+                if opraiz == True:
+                    p.inicial()
+
+            elif escolha_user == 4:
                 optabuada = calcular.OpMatematicas.tabuada()
 
                 if optabuada == True:

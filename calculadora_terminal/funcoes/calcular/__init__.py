@@ -1,5 +1,5 @@
 import os
-from math import factorial
+from math import factorial, sqrt
 from extras import cores
 from funcoes import perguntas
 from funcoes import print_terminal as p
@@ -98,7 +98,7 @@ class OpMatematicas:
     
     def tabuada():
         os.system('cls' if os.name == 'nt' else 'clear')
-        p.tabuada()
+        p.ptabuada()
 
         while True:
 
@@ -109,6 +109,7 @@ class OpMatematicas:
                     print(f"{entrada:^2} x {num:^4} = ", end='')
                     print(cores[2],f"{entrada*num}",cores[0])
                 
+                print('-'*60)
                 perguntar = perguntas.pbasicas()
 
                 if perguntar == False:
@@ -118,6 +119,32 @@ class OpMatematicas:
                 else:
                     print('-'*60)
                     continue
+
+            except ValueError:
+                print(cores[1],'Erro entrada invalida!',cores[0])
+                print('-'*60)
+
+    def raiz():
+        os.system('cls' if os.name == 'nt' else 'clear')
+        p.praiz()
+
+        while True:
+
+            try:
+                entrada = float(input("Vamos calcular a raiz de qual número? "))
+                print(cores[2],f"A Raiz quadrada de {entrada} é {sqrt(entrada)}",cores[0])
+                print('-'*60)
+
+                perguntar = perguntas.pbasicas()
+
+                if perguntar == False:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    return True
+                
+                else:
+                    print('-'*60)
+                    continue
+
 
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])

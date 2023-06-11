@@ -6,7 +6,7 @@ def inicial():
     print(f"{'Sou o Calculon o senhor das calculadoras':^60}")
     print('-'*60)
     print(f"{'Operações Basicas:'}")
-    print('[1] Adição | Subtração | Multiplicação | Divisão | Potência\n[2] Fatorial de um número\n[3] Tabuada')
+    print('[1] Adição | Subtração | Multiplicação | Divisão | Potência\n[2] Fatorial de um número\n[3] Raiz quadrada\n[4] Tabuada')
     print('-'*60)
     print('[9] Limpar\n[0] Exit')
     print('-'*60)
@@ -28,7 +28,12 @@ def factori():
     print(f'Os valores a serem fatorados devem ser inteiros!')
     print('-'*60)
 
-def tabuada():
+def ptabuada():
     print(f"{'Gerador de Tabuada':-^60}")
     print('Escolhar qualquer número interio para gerar a tabuada.')
+    print('-'*60)
+
+def praiz():
+    print(f"{'Calculando a Raiz quadrada':-^60}")
+    print('Lembrando que só podemos obter a raiz quadrada de um número\npositivo.')
     print('-'*60)
