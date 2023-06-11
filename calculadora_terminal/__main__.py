@@ -41,6 +41,8 @@ def inicia():
                 if optabuada == True:
                     p.inicial()
 
+            
+
             elif escolha_user == 9:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 p.inicial()
