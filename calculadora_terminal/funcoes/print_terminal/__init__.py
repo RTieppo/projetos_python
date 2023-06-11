@@ -6,7 +6,7 @@ def inicial():
     print(f"{'Sou o Calculon o senhor das calculadoras':^60}")
     print('-'*60)
     print(f"{'Operações Basicas:'}")
-    print('[1] Adição | Subtração | Multiplicação | Divisão | Potência\n[2] Fatorial de um número\n[3] Raiz quadrada\n[4] Tabuada')
+    print('[1] Adição | Subtração | Multiplicação | Divisão | Potência\n[2] Conversor de metros para MM | CM | DM | DAM | HM | KM\n[3] Fatorial de um número\n[4] Raiz quadrada\n[5] Tabuada')
     print('-'*60)
     print('[9] Limpar\n[0] Exit')
     print('-'*60)
@@ -36,4 +36,11 @@ def ptabuada():
 def praiz():
     print(f"{'Calculando a Raiz quadrada':-^60}")
     print('Lembrando que só podemos obter a raiz quadrada de um número\npositivo.')
+    print('-'*60)
+
+def conversor():
+    print(f"{'Conversor de metros':-^60}")
+    print('Exemplos de entradas:')
+    print(cores[3],f"{'Para metros inteiro: 2':^60}",cores[0])
+    print(cores[3],f"{'Para metros fracionados: 1.5 ou 0.5':>54}",cores[0])
     print('-'*60)

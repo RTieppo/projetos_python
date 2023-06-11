@@ -150,3 +150,32 @@ class OpMatematicas:
                 print(cores[1],'Erro entrada invalida!',cores[0])
                 print('-'*60)
 
+    def convert():
+        os.system('cls' if os.name == 'nt' else 'clear')
+        p.conversor()
+
+        while True:
+            try:
+                entrada = float(input('Quantos metros gostaria de converter? '))
+                print(cores[2],end='')
+                print(f"A conversão de {entrada}M para mm é {entrada*1000};")
+                print(f"A conversão de {entrada}M para cm é {entrada*100};")
+                print(f"A conversão de {entrada}M para dm é {entrada*10};")
+                print(f"A conversão de {entrada}M para dam é {entrada/10};")
+                print(f"A conversão de {entrada}M para hm é {entrada/100};")
+                print(f"A conversão de {entrada}M para km é {entrada/1000}.",cores[0])
+                print('-'*60)
+
+                perguntar = perguntas.pbasicas()
+
+                if perguntar == False:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    return True
+                
+                else:
+                    print('-'*60)
+
+
+            except ValueError:
+                print(cores[1],'Erro entrada invalida!',cores[0])
+                print('-'*60)
