@@ -12,7 +12,7 @@ def inicia():
     while True:
         try:
 
-            print(cores[2],'Escolha uma das opções acima [1,2,3,4,5,9,0]',cores[0], end='')
+            print(cores[2],'Escolha uma das opções acima [1,2,3,4,5,8,9,0]',cores[0], end='')
             escolha_user = int(input(': '))
 
             if escolha_user > 9:

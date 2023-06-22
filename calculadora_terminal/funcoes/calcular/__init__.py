@@ -24,8 +24,17 @@ class OpMatematicas:
                     return True
                 
                 else:
-                    print('-'*60)
-                    continue
+                    limpeza = perguntas.limp()
+
+                    if limpeza == True:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        p.basicas()
+                        continue
+                    
+                    else:
+
+                        print('-'*60)
+                        continue
 
             
             except SyntaxError:
@@ -33,6 +42,10 @@ class OpMatematicas:
                 print('-'*60)
 
             except TypeError:
+                print(cores[1],'Erro formula invalida!',cores[0])
+                print('-'*60)
+            
+            except ZeroDivisionError:
                 print(cores[1],'Erro formula invalida!',cores[0])
                 print('-'*60)
     
@@ -67,8 +80,16 @@ class OpMatematicas:
                                     return True
                                 
                                 else:
-                                    print('-'*60)
-                                    continue
+                                    limpeza = perguntas.limp()
+
+                                    if limpeza == True:
+                                        os.system('cls' if os.name == 'nt' else 'clear')
+                                        p.factori()
+                                        break
+                                    
+                                    else:
+                                        print('-'*60)
+                                        break
 
                             else:
                                 print(cores[2],f'O resultado da sua conta é {factorial(entrada)}',cores[0])
@@ -80,8 +101,16 @@ class OpMatematicas:
                                     return True
                                 
                                 else:
-                                    print('-'*60)
-                                    continue
+                                    limpeza = perguntas.limp()
+
+                                    if limpeza == True:
+                                        os.system('cls' if os.name == 'nt' else 'clear')
+                                        p.factori()
+                                        break
+                                    
+                                    else:
+                                        print('-'*60)
+                                        break
                         
                         else:
                             print(cores[1],'Erro entradas invalidas!',cores[0])
@@ -117,8 +146,16 @@ class OpMatematicas:
                     return True
                 
                 else:
-                    print('-'*60)
-                    continue
+                    limpeza = perguntas.limp()
+                    if limpeza == True:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        p.ptabuada()
+                        continue
+                    
+                    else:
+
+                        print('-'*60)
+                        continue
 
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
@@ -142,8 +179,14 @@ class OpMatematicas:
                     return True
                 
                 else:
-                    print('-'*60)
-                    continue
+                    limpeza = perguntas.limp()
+                    if limpeza == True:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        p.praiz()
+                        continue
+                    else:
+                        print('-'*60)
+                        continue
 
 
             except ValueError:
@@ -173,8 +216,14 @@ class OpMatematicas:
                     return True
                 
                 else:
-                    print('-'*60)
-
+                    limpeza = perguntas.limp()
+                    if limpeza == True:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        p.conversor()
+                    
+                    else:
+                        print('-'*60)
+                        continue
 
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
