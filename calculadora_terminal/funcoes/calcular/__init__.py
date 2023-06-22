@@ -228,3 +228,86 @@ class OpMatematicas:
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
                 print('-'*60)
+
+    def numcomplex():
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+        while True:
+            try:
+                p.numcomplexo()
+                print(cores[2],'Escolha uma das opções acima [1,2,3,4,5]',cores[0], end='')
+                escolha_user = int(input(': '))
+
+                if escolha_user > 5:
+                    print(cores[1],'Erro entrada invalida!',cores[0])
+                    print('-'*60)
+                
+                else:
+                    while True:
+                        try:
+                            print('-'*60)
+                            print('Exemplos de entradas:')
+                            print(cores[3],f"{'3+5j':>24}",cores[0])
+                            print('-'*60)
+                            
+                            num1 = complex(input('Primeira entrada:'))
+
+                            while True:
+                                try:
+                                    num2 = complex(input('Segunda entrada:'))
+                                    break
+
+                                except ValueError:
+                                    print(cores[1],'Erro entrada invalida!',cores[0])
+                                    print('-'*60)
+
+                            if escolha_user == 1:
+
+                                print(cores[2],f"O resultado da sua soma é {str(num1 + num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                break
+                            
+                            elif escolha_user == 2:
+
+                                print(cores[2],f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                break
+                            elif escolha_user == 3:
+
+                                print(cores[2],f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                break
+
+                            elif escolha_user == 4:
+
+                                print(cores[2],f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                break
+
+                            elif escolha_user == 5:
+
+                                print(cores[2],f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                break
+                        
+                        except ValueError:
+                            print(cores[1],'Erro entrada invalida!',cores[0])
+
+                    perguntar = perguntas.pbasicas()
+                    
+                    if perguntar == False:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        return True
+                    
+                    else:
+                        limpeza = perguntas.limp()
+                        if limpeza == True:
+                            os.system('cls' if os.name == 'nt' else 'clear')
+                            continue
+                        
+                        else:
+                            print('-'*60)
+                            continue
+
+            except ValueError:
+                print(cores[1],'Erro entrada invalida!',cores[0])

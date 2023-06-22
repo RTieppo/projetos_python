@@ -34,14 +34,20 @@ def inicia():
 
                 if opfact == True:
                     p.inicial()
-
+            
             elif escolha_user == 4:
+                numcomplex = calcular.OpMatematicas.numcomplex()
+
+                if numcomplex == True:
+                    p.inicial()
+
+            elif escolha_user == 5:
                 opraiz = calcular.OpMatematicas.raiz()
 
                 if opraiz == True:
                     p.inicial()
 
-            elif escolha_user == 5:
+            elif escolha_user == 6:
                 optabuada = calcular.OpMatematicas.tabuada()
 
                 if optabuada == True:
