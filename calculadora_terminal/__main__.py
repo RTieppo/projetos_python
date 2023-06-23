@@ -1,13 +1,14 @@
 import sys
 import os
 
-from extras import cores
+from extras import cores,criatxt
 from funcoes import print_terminal as p
 from funcoes import calcular
 
 def inicia():
 
     p.inicial()
+    cria_txt = criatxt()
 
     while True:
         try:
@@ -53,6 +54,13 @@ def inicia():
                 if optabuada == True:
                     p.inicial()
 
+            
+            elif escolha_user == 7:
+                pass
+
+
+            elif escolha_user == 8:
+                pass
 
             elif escolha_user == 9:
                 os.system('cls' if os.name == 'nt' else 'clear')
