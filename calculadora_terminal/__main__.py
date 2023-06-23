@@ -13,7 +13,7 @@ def inicia():
     while True:
         try:
 
-            print(cores[2],'Escolha uma das opções acima [1,2,3,4,5,8,9,0]',cores[0], end='')
+            print('\033[0;31mEscolha uma das opções acima [1,2,3,4,5,8,9,0]\033[m', end='')
             escolha_user = int(input(': '))
 
             if escolha_user > 9:
@@ -60,7 +60,21 @@ def inicia():
 
 
             elif escolha_user == 8:
-                pass
+                
+                if cria_txt == True:
+                    abre_txt = open(r'C:\Users\Public\hist.txt', 'r', encoding='utf8').read()
+
+                    if len(abre_txt) > 5:
+                        print(f"{'Histórico':-^60}")
+                        print(abre_txt)
+                    
+                    else:
+                        print(cores[1],'Sem Histórico!',cores[0])
+                        print('-'*60)
+
+                else:
+                    print(cores[1],'Sem Histórico!',cores[0])
+                    print('-'*60)
 
             elif escolha_user == 9:
                 os.system('cls' if os.name == 'nt' else 'clear')
