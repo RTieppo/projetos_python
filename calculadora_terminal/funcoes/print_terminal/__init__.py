@@ -5,7 +5,7 @@ def inicial():
     print(f"{'Bem-vindo!':-^60}")
     print(f"{'Sou o Calculon o senhor das calculadoras':^60}")
     print('-'*60)
-    print('[1] Adição | Subtração | Multiplicação | Divisão | Potência\n[2] Conversor de metros para MM | CM | DM | DAM | HM | KM\n[3] Fatorial de um número\n[4] Números Complexos\n[5] Raiz quadrada\n[6] Tabuada')
+    print('[1] Adição | Subtração | Multiplicação | Divisão | Potência\n[2] Conversor de metros para MM | CM | DM | DAM | HM | KM\n[3] Fatorial de um número\n[4] Hipotenusa\n[5] Números Complexos\n[6] Raiz quadrada\n[7] Tabuada')
     print('-'*60)
     print('[8] Historico\n[9] Limpar\n[0] Exit')
     print('-'*60)
@@ -49,3 +49,6 @@ def numcomplexo():
     print('Qual operação vai ser realizada?')
     print('[1] Adição\n[2] Subtração\n[3] Multiplicação\n[4] Divisão\n[5] Potência')
     print('-'*60)
+
+def hipotnu():
+    print(f"{'Calculando a Hipotenusa':-^60}")

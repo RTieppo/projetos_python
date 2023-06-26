@@ -373,3 +373,48 @@ class OpMatematicas:
 
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
+
+    def hipot():
+        os.system('cls' if os.name == 'nt' else 'clear')
+        p.hipotnu()
+
+        while True:
+            try:
+                co = float(input('Entre com o valor do cateto oposto: '))
+
+                while True:
+                    try:
+                        ca = float(input('Entre com o valor do cateto adjacente: '))
+                        break
+
+                    except ValueError:
+                        print(cores[1],'Erro entrada invalida!',cores[0])
+                        print('-'*60)
+                
+                gravahist(f"cateto oposto:{co}\ncateto adjacente:{ca}\n")
+                gravahist(f'A hipotenusa é {(ca**2 + co**2)**(1/2)}\n')
+                gravahist(f"{'-'*60}\n")
+
+
+                print(cores[2],f'A hipotenusa é {(ca**2 + co**2)**(1/2)}',cores[0])
+                print('-'*60)
+
+                perguntar = perguntas.pbasicas()
+
+                if perguntar == False:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    return True
+                
+                else:
+                    limpeza = perguntas.limp()
+                    if limpeza == True:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        p.hipotnu()
+                    
+                    else:
+                        print('-'*60)
+                        continue
+
+            except ValueError:
+                print(cores[1],'Erro entrada invalida!',cores[0])
+                print('-'*60)

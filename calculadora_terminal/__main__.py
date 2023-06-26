@@ -1,6 +1,7 @@
 import sys
 import os
 
+from time import sleep
 from extras import cores,criatxt
 from funcoes import print_terminal as p
 from funcoes import calcular
@@ -13,7 +14,7 @@ def inicia():
     while True:
         try:
 
-            print('\033[0;31mEscolha uma das opções acima [1,2,3,4,5,8,9,0]\033[m', end='')
+            print('\033[0;32mEscolha uma das opções acima [1,2,3,4,5,6,7,8,9,0]\033[m', end='')
             escolha_user = int(input(': '))
 
             if escolha_user > 9:
@@ -37,27 +38,28 @@ def inicia():
                     p.inicial()
             
             elif escolha_user == 4:
+                hipot = calcular.OpMatematicas.hipot()
+
+                if hipot == True:
+                    p.inicial()
+
+            elif escolha_user == 5:
                 numcomplex = calcular.OpMatematicas.numcomplex()
 
                 if numcomplex == True:
                     p.inicial()
 
-            elif escolha_user == 5:
+            elif escolha_user == 6:
                 opraiz = calcular.OpMatematicas.raiz()
 
                 if opraiz == True:
                     p.inicial()
 
-            elif escolha_user == 6:
+            elif escolha_user == 7:
                 optabuada = calcular.OpMatematicas.tabuada()
 
                 if optabuada == True:
                     p.inicial()
-
-            
-            elif escolha_user == 7:
-                pass
-
 
             elif escolha_user == 8:
                 
@@ -82,6 +84,7 @@ def inicia():
 
             elif escolha_user == 0:
                 p.fim()
+                sleep(2)
                 sys.exit()
 
         
