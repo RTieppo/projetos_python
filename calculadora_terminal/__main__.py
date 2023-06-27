@@ -10,10 +10,10 @@ def inicia():
 
     p.inicial()
     cria_txt = criatxt()
+    sleep(0.3)
 
     while True:
         try:
-
             print('\033[0;32mEscolha uma das opções acima [1,2,3,4,5,6,7,8,9,0]\033[m', end='')
             escolha_user = int(input(': '))
 
