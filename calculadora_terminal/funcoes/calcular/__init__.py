@@ -1,12 +1,14 @@
 import os
+import re
 from math import factorial, sqrt
 from extras import cores,gravahist
 from funcoes import perguntas
 from funcoes import print_terminal as p
 
+analise = re.compile(r"(-?(?:0|[1-9]\d*)(?:\.\d+)?)")
 
 class OpMatematicas:
-    
+
     def basicas():
         os.system('cls' if os.name == 'nt' else 'clear')
         p.basicas()
@@ -131,37 +133,41 @@ class OpMatematicas:
 
         while True:
             try:
+
                 entrada = input('Qual tabuada você deseja gerar? ')
 
-                if entrada in "ls":
+                if analise.match(entrada):
+                    
+                    gravahist(f'Tabuada do {entrada}\n')
+
+                    for num in range(11):
+
+                        gravahist(f"{entrada:^2} x {num:^4} = ")
+                        gravahist(f"{float(entrada)*num}\n")
+
+                        print(f"{entrada:^2} x {num:^4} = ", end='')
+                        print(cores[2],f"{float(entrada)*num}",cores[0])
+                    
+                    gravahist(f"{'-'*60}\n")
+                    print('-'*60)
+
+                elif entrada in "ls ":
                     
                     if entrada == 'l':
                         os.system('cls' if os.name == 'nt' else 'clear')
                         p.ptabuada()
-
-                    else:
+                    
+                    elif entrada == 's':
                         os.system('cls' if os.name == 'nt' else 'clear')
                         return True
-                
-                else:
-                    if entrada.isnumeric():
-
-                        gravahist(f'Tabuada do {entrada}\n')
-
-                        for num in range(11):
-
-                            gravahist(f"{entrada:^2} x {num:^4} = ")
-                            gravahist(f"{int(entrada)*num}\n")
-
-                            print(f"{entrada:^2} x {num:^4} = ", end='')
-                            print(cores[2],f"{int(entrada)*num}",cores[0])
-                        
-                        gravahist(f"{'-'*60}\n")
-                        print('-'*60)
 
                     else:
                         print(cores[1],'Erro entrada invalida!',cores[0])
                         print('-'*60)
+                
+                else:
+                    print(cores[1],'Erro entrada invalida!',cores[0])
+                    print('-'*60)
 
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
@@ -256,6 +262,7 @@ class OpMatematicas:
     def numcomplexpt2(escolha_user):
         
         while True:
+
             num1 = input('Primeira entrada:')
                 
             if num1 in 'ls ':
@@ -270,82 +277,86 @@ class OpMatematicas:
                     print(cores[1],'Erro entrada invalida!',cores[0])
                     print('-'*60)
             
-            elif num1[0].isnumeric():
+            elif analise.match(num1):
                 while True:
 
-                    num2 = input('Segunda entrada:')
+                    try:
+                        num2 = input('Segunda entrada:')
 
-                    if num2 in 'ls ':
+                        if num2 in 'ls ':
 
-                        if num2 == 'l':
-                            return '-limpa-'
-                        
-                        elif num2 == 's':
-                            return '-sair-'
+                            if num2 == 'l':
+                                return '-limpa-'
+                            
+                            elif num2 == 's':
+                                return '-sair-'
+                            
+                            else:
+                                print(cores[1],'Erro entrada invalida!',cores[0])
+                                print('-'*60)
+                            
+                        elif analise.match(num2):
+
+                            num1 = complex(num1)
+                            num2 = complex(num2)
+
+                            if escolha_user == 1:
+
+                                gravahist(f"Números somados {num1} + {num2}:\n")
+                                gravahist(f"O resultado da sua soma é {str(num1 + num2)[1:-1]}\n")
+                                gravahist(f"{'-'*60}\n")
+
+                                print(cores[2],f"O resultado da sua soma é {str(num1 + num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                return True
+                            
+                            elif escolha_user == 2:
+
+                                gravahist(f"Números subtraídos {num1} - {num2}:\n")
+                                gravahist(f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}\n")
+                                gravahist(f"{'-'*60}\n")
+
+                                print(cores[2],f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                return True
+
+                            elif escolha_user == 3:
+                                
+                                gravahist(f"Números Multiplicados {num1} * {num2}:\n")
+                                gravahist(f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}\n")
+                                gravahist(f"{'-'*60}\n")
+
+                                print(cores[2],f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                return True
+
+                            elif escolha_user == 4:
+
+                                gravahist(f"Números Divididos {num1} + {num2}:\n")
+                                gravahist(f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}\n")
+                                gravahist(f"{'-'*60}\n")
+
+                                print(cores[2],f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                return True
+
+                            elif escolha_user == 5:
+
+                                gravahist(f"Potência dos números {num1} + {num2}:\n")
+                                gravahist(f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}\n")
+                                gravahist(f"{'-'*60}\n")
+
+                                print(cores[2],f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}",cores[0])
+                                print('-'*60)
+                                return True
                         
                         else:
                             print(cores[1],'Erro entrada invalida!',cores[0])
                             print('-'*60)
-                        
-                    elif num2[0].isnumeric():
-
-                        num1 = complex(num1)
-                        num2 = complex(num2)
-
-                        if escolha_user == 1:
-
-                            gravahist(f"Números somados {num1} + {num2}:\n")
-                            gravahist(f"O resultado da sua soma é {str(num1 + num2)[1:-1]}\n")
-                            gravahist(f"{'-'*60}\n")
-
-                            print(cores[2],f"O resultado da sua soma é {str(num1 + num2)[1:-1]}",cores[0])
-                            print('-'*60)
-                            return True
-                        
-                        elif escolha_user == 2:
-
-                            gravahist(f"Números subtraídos {num1} - {num2}:\n")
-                            gravahist(f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}\n")
-                            gravahist(f"{'-'*60}\n")
-
-                            print(cores[2],f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}",cores[0])
-                            print('-'*60)
-                            return True
-
-                        elif escolha_user == 3:
-                            
-                            gravahist(f"Números Multiplicados {num1} * {num2}:\n")
-                            gravahist(f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}\n")
-                            gravahist(f"{'-'*60}\n")
-
-                            print(cores[2],f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}",cores[0])
-                            print('-'*60)
-                            return True
-
-                        elif escolha_user == 4:
-
-                            gravahist(f"Números Divididos {num1} + {num2}:\n")
-                            gravahist(f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}\n")
-                            gravahist(f"{'-'*60}\n")
-
-                            print(cores[2],f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}",cores[0])
-                            print('-'*60)
-                            return True
-
-                        elif escolha_user == 5:
-
-                            gravahist(f"Potência dos números {num1} + {num2}:\n")
-                            gravahist(f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}\n")
-                            gravahist(f"{'-'*60}\n")
-
-                            print(cores[2],f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}",cores[0])
-                            print('-'*60)
-                            return True
                     
-                    else:
+                    except ValueError:
                         print(cores[1],'Erro entrada invalida!',cores[0])
                         print('-'*60)
-
 
     def numcomplex():
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -394,6 +405,7 @@ class OpMatematicas:
                             return True
                         
                         else:
+                            p.numcomplexo()
                             continue
                         
             
