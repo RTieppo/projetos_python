@@ -14,33 +14,27 @@ class OpMatematicas:
         while True:
             try:
                 entrada = input('Digite a sua conta ou fórmula: ')
-                resultado = eval(entrada)
 
-                print(cores[2],f'O resultado da sua conta é {resultado}',cores[0])
-                print('-'*60)
-
-                gravahist(f'A sua conta foi: {entrada}\n')
-                gravahist(f'O resultado da sua conta é {resultado}\n')
-                gravahist(f"{'-'*60}\n")
-
-
-                perguntar = perguntas.pbasicas()
-
-                if perguntar == False:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    return True
-                
-                else:
-                    limpeza = perguntas.limp()
-
-                    if limpeza == True:
+                if entrada in "ls":
+                    
+                    if entrada == 'l':
                         os.system('cls' if os.name == 'nt' else 'clear')
                         p.basicas()
                         continue
 
                     else:
-                        print('-'*60)
-                        continue
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        return True
+
+                else:
+                    resultado = eval(entrada)
+
+                    print(cores[2],f'O resultado da sua conta é {resultado}',cores[0])
+                    print('-'*60)
+
+                    gravahist(f'A sua conta foi: {entrada}\n')
+                    gravahist(f'O resultado da sua conta é {resultado}\n')
+                    gravahist(f"{'-'*60}\n")
 
             
             except SyntaxError:
@@ -54,6 +48,10 @@ class OpMatematicas:
             except ZeroDivisionError:
                 print(cores[1],'Erro formula invalida!',cores[0])
                 print('-'*60)
+            
+            except NameError:
+                print(cores[1],'Erro formula invalida!',cores[0])
+                print('-'*60)
     
     def factor():
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -61,83 +59,64 @@ class OpMatematicas:
 
         while True:
             try:
-                entrada = int(input('Qual Nº você quer fatorar? '))
+                entrada = input('Qual Nº você quer fatorar? ')
 
-                while True:
-                    try:
-                        calculo = str(input('Gostaria de ver o calculo? [S/N] ')).upper().strip()[0]
+                if entrada in "ls":
+                    
+                    if entrada == 'l':
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        p.factori()
 
-                        if calculo in 'SN':
-                            gravahist(f'Nº fatorado: {entrada}\n')
+                    else:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        return True
+                
+                else:
+                    if entrada.isnumeric():
+                        while True:
+                            try:
+                                calculo = str(input('Gostaria de ver o calculo? [S/N] ')).upper().strip()[0]
 
-                            if calculo == 'S':
-                                multiplicador = 1
-                                print('-'*60)
-                                print('O resultado da sua fatoração é:')
-                                gravahist('O resultado da sua fatoração é:')
+                                if calculo in 'SN':
+                                    gravahist(f'Nº fatorado: {entrada}\n')
 
-                                for num in range(entrada, 0, -1):
-                                    print(cores[2],f'{num}', end=' ')
-                                    gravahist(f'{num}')
-                                    if num != 1:
-                                        print('x', end='')
-                                        gravahist('x')
-                                    multiplicador *= num
-                                
-                                gravahist(f'={multiplicador}\n')
-                                gravahist(f"{'-'*60}\n")
+                                    if calculo == 'S':
+                                        multiplicador = 1
+                                        print('-'*60)
+                                        print('O resultado da sua fatoração é:')
+                                        gravahist('O resultado da sua fatoração é:')
 
-                                print(f'= {multiplicador}',cores[0])
-                                print('-'*60)
+                                        for num in range(int(entrada), 0, -1):
+                                            print(cores[2],f'{num}', end=' ')
+                                            gravahist(f'{num}')
+                                            if num != 1:
+                                                print('x', end='')
+                                                gravahist('x')
+                                            multiplicador *= num
+                                        
+                                        gravahist(f'={multiplicador}\n')
+                                        gravahist(f"{'-'*60}\n")
 
-
-                                perguntar = perguntas.pbasicas()
-
-                                if perguntar == False:
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    return True
-                                
-                                else:
-                                    limpeza = perguntas.limp()
-
-                                    if limpeza == True:
-                                        os.system('cls' if os.name == 'nt' else 'clear')
-                                        p.factori()
-                                        break
-                                    
-                                    else:
+                                        print(f'= {multiplicador}',cores[0])
                                         print('-'*60)
                                         break
 
-                            else:
-                                gravahist(f'O resultado da sua conta é {factorial(entrada)}\n')
-                                gravahist(f"{'-'*60}\n")
-
-                                print(cores[2],f'O resultado da sua conta é {factorial(entrada)}',cores[0])
-                                print('-'*60)
-                                perguntar = perguntas.pbasicas()
-
-                                if perguntar == False:
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                    return True
-                                
-                                else:
-                                    limpeza = perguntas.limp()
-
-                                    if limpeza == True:
-                                        os.system('cls' if os.name == 'nt' else 'clear')
-                                        p.factori()
-                                        break
-                                    
                                     else:
+                                        gravahist(f'O resultado da sua conta é {factorial(int(entrada))}\n')
+                                        gravahist(f"{'-'*60}\n")
+
+                                        print(cores[2],f'O resultado da sua conta é {factorial(int(entrada))}',cores[0])
                                         print('-'*60)
                                         break
-                        
-                        else:
-                            print(cores[1],'Erro entradas invalidas!',cores[0])
-                            print('-'*60)
+                                
+                                else:
+                                    print(cores[1],'Erro entradas invalidas!',cores[0])
+                                    print('-'*60)
 
-                    except IndexError:
+                            except IndexError:
+                                print(cores[1],'Erro entrada invalida!',cores[0])
+                                print('-'*60)
+                    else:
                         print(cores[1],'Erro entrada invalida!',cores[0])
                         print('-'*60)
 
@@ -151,38 +130,38 @@ class OpMatematicas:
         p.ptabuada()
 
         while True:
-
             try:
-                entrada = int(input('Qual tabuada você deseja gerar? '))
-                gravahist(f'Taboada do {entrada}\n')
+                entrada = input('Qual tabuada você deseja gerar? ')
 
-                for num in range(11):
-
-                    gravahist(f"{entrada:^2} x {num:^4} = ")
-                    gravahist(f"{entrada*num}\n")
-
-                    print(f"{entrada:^2} x {num:^4} = ", end='')
-                    print(cores[2],f"{entrada*num}",cores[0])
-                
-                gravahist(f"{'-'*60}\n")
-                print('-'*60)
-                perguntar = perguntas.pbasicas()
-
-                if perguntar == False:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    return True
-                
-                else:
-                    limpeza = perguntas.limp()
-                    if limpeza == True:
+                if entrada in "ls":
+                    
+                    if entrada == 'l':
                         os.system('cls' if os.name == 'nt' else 'clear')
                         p.ptabuada()
-                        continue
-                    
-                    else:
 
+                    else:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        return True
+                
+                else:
+                    if entrada.isnumeric():
+
+                        gravahist(f'Tabuada do {entrada}\n')
+
+                        for num in range(11):
+
+                            gravahist(f"{entrada:^2} x {num:^4} = ")
+                            gravahist(f"{int(entrada)*num}\n")
+
+                            print(f"{entrada:^2} x {num:^4} = ", end='')
+                            print(cores[2],f"{int(entrada)*num}",cores[0])
+                        
+                        gravahist(f"{'-'*60}\n")
                         print('-'*60)
-                        continue
+
+                    else:
+                        print(cores[1],'Erro entrada invalida!',cores[0])
+                        print('-'*60)
 
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
@@ -193,31 +172,34 @@ class OpMatematicas:
         p.praiz()
 
         while True:
-
             try:
-                entrada = float(input("Vamos calcular a raiz de qual número? "))
 
-                gravahist(f"A Raiz quadrada de {entrada} é {sqrt(entrada)}\n")
-                gravahist(f"{'-'*60}\n")
-                
-                print(cores[2],f"A Raiz quadrada de {entrada} é {sqrt(entrada)}",cores[0])
-                print('-'*60)
+                entrada = input("Vamos calcular a raiz de qual número? ")
 
-                perguntar = perguntas.pbasicas()
-
-                if perguntar == False:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    return True
-                
-                else:
-                    limpeza = perguntas.limp()
-                    if limpeza == True:
+                if entrada in "ls":
+                    
+                    if entrada == 'l':
                         os.system('cls' if os.name == 'nt' else 'clear')
                         p.praiz()
-                        continue
+
                     else:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        return True
+                
+                else:
+
+                    convert = entrada.split('.')
+                    if convert[0].isnumeric():
+
+                        gravahist(f"A Raiz quadrada de {entrada} é {sqrt(float(entrada))}\n")
+                        gravahist(f"{'-'*60}\n")
+                        
+                        print(cores[2],f"A Raiz quadrada de {entrada} é {sqrt(float(entrada))}",cores[0])
                         print('-'*60)
-                        continue
+                    
+                    else:
+                        print(cores[1],'Erro entrada invalida!',cores[0])
+                        print('-'*60)
 
 
             except ValueError:
@@ -230,149 +212,198 @@ class OpMatematicas:
 
         while True:
             try:
-                entrada = float(input('Quantos metros gostaria de converter? '))
-                print(cores[2],end='')
+                entrada = input('Quantos metros gostaria de converter? ')
 
-                gravahist(f"A conversão de {entrada}M para mm é {entrada*1000};\n")
-                gravahist(f"A conversão de {entrada}M para cm é {entrada*100};\n")
-                gravahist(f"A conversão de {entrada}M para dm é {entrada*10};\n")
-                gravahist(f"A conversão de {entrada}M para dam é {entrada/10};\n")
-                gravahist(f"A conversão de {entrada}M para hm é {entrada/100};\n")
-                gravahist(f"A conversão de {entrada}M para km é {entrada/1000}.\n")
-                gravahist(f"{'-'*60}\n")
-
-
-                print(f"A conversão de {entrada}M para mm é {entrada*1000};")
-                print(f"A conversão de {entrada}M para cm é {entrada*100};")
-                print(f"A conversão de {entrada}M para dm é {entrada*10};")
-                print(f"A conversão de {entrada}M para dam é {entrada/10};")
-                print(f"A conversão de {entrada}M para hm é {entrada/100};")
-                print(f"A conversão de {entrada}M para km é {entrada/1000}.",cores[0])
-                print('-'*60)
-
-                perguntar = perguntas.pbasicas()
-
-                if perguntar == False:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    return True
-                
-                else:
-                    limpeza = perguntas.limp()
-                    if limpeza == True:
+                if entrada in "ls":
+                    
+                    if entrada == 'l':
                         os.system('cls' if os.name == 'nt' else 'clear')
                         p.conversor()
+
+                    else:
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        return True
+                
+                else:
+                    convert = entrada.split('.')
+                    if convert[0].isnumeric():
+                        gravahist(f"A conversão de {entrada}M para mm é {float(entrada)*1000};\n")
+                        gravahist(f"A conversão de {entrada}M para cm é {float(entrada)*100};\n")
+                        gravahist(f"A conversão de {entrada}M para dm é {float(entrada)*10};\n")
+                        gravahist(f"A conversão de {entrada}M para dam é {float(entrada)/10};\n")
+                        gravahist(f"A conversão de {entrada}M para hm é {float(entrada)/100};\n")
+                        gravahist(f"A conversão de {entrada}M para km é {float(entrada)/1000}.\n")
+                        gravahist(f"{'-'*60}\n")
+
+                        print(cores[2],end='')
+                        print(f"A conversão de {entrada}M para mm é {float(entrada)*1000};")
+                        print(f"A conversão de {entrada}M para cm é {float(entrada)*100};")
+                        print(f"A conversão de {entrada}M para dm é {float(entrada)*10};")
+                        print(f"A conversão de {entrada}M para dam é {float(entrada)/10};")
+                        print(f"A conversão de {entrada}M para hm é {float(entrada)/100};")
+                        print(f"A conversão de {entrada}M para km é {float(entrada)/1000}.",cores[0])
+                        print('-'*60)
                     
                     else:
+                        print(cores[1],'Erro entrada invalida!',cores[0])
                         print('-'*60)
-                        continue
+
 
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
                 print('-'*60)
 
+    def numcomplexpt2(escolha_user):
+        
+        while True:
+            num1 = input('Primeira entrada:')
+                
+            if num1 in 'ls ':
+
+                if num1 == 'l':
+                    return '-limpa-'
+                
+                elif num1 == 's':
+                    return '-sair-'
+                                
+                else:
+                    print(cores[1],'Erro entrada invalida!',cores[0])
+                    print('-'*60)
+            
+            elif num1[0].isnumeric():
+                while True:
+
+                    num2 = input('Segunda entrada:')
+
+                    if num2 in 'ls ':
+
+                        if num2 == 'l':
+                            return '-limpa-'
+                        
+                        elif num2 == 's':
+                            return '-sair-'
+                        
+                        else:
+                            print(cores[1],'Erro entrada invalida!',cores[0])
+                            print('-'*60)
+                        
+                    elif num2[0].isnumeric():
+
+                        num1 = complex(num1)
+                        num2 = complex(num2)
+
+                        if escolha_user == 1:
+
+                            gravahist(f"Números somados {num1} + {num2}:\n")
+                            gravahist(f"O resultado da sua soma é {str(num1 + num2)[1:-1]}\n")
+                            gravahist(f"{'-'*60}\n")
+
+                            print(cores[2],f"O resultado da sua soma é {str(num1 + num2)[1:-1]}",cores[0])
+                            print('-'*60)
+                            return True
+                        
+                        elif escolha_user == 2:
+
+                            gravahist(f"Números subtraídos {num1} - {num2}:\n")
+                            gravahist(f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}\n")
+                            gravahist(f"{'-'*60}\n")
+
+                            print(cores[2],f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}",cores[0])
+                            print('-'*60)
+                            return True
+
+                        elif escolha_user == 3:
+                            
+                            gravahist(f"Números Multiplicados {num1} * {num2}:\n")
+                            gravahist(f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}\n")
+                            gravahist(f"{'-'*60}\n")
+
+                            print(cores[2],f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}",cores[0])
+                            print('-'*60)
+                            return True
+
+                        elif escolha_user == 4:
+
+                            gravahist(f"Números Divididos {num1} + {num2}:\n")
+                            gravahist(f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}\n")
+                            gravahist(f"{'-'*60}\n")
+
+                            print(cores[2],f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}",cores[0])
+                            print('-'*60)
+                            return True
+
+                        elif escolha_user == 5:
+
+                            gravahist(f"Potência dos números {num1} + {num2}:\n")
+                            gravahist(f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}\n")
+                            gravahist(f"{'-'*60}\n")
+
+                            print(cores[2],f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}",cores[0])
+                            print('-'*60)
+                            return True
+                    
+                    else:
+                        print(cores[1],'Erro entrada invalida!',cores[0])
+                        print('-'*60)
+
+
     def numcomplex():
         os.system('cls' if os.name == 'nt' else 'clear')
+        p.numcomplexo()
 
         while True:
             try:
-                p.numcomplexo()
                 print(cores[2],'Escolha uma das opções acima [1,2,3,4,5]',cores[0], end='')
-                escolha_user = int(input(': '))
+                escolha_user = input(': ')
 
-                if escolha_user > 5:
-                    print(cores[1],'Erro entrada invalida!',cores[0])
-                    print('-'*60)
-                
-                else:
-                    while True:
-                        try:
-                            print('-'*60)
-                            print('Exemplos de entradas:')
-                            print(cores[3],f"{'3+5j':>24}",cores[0])
-                            print('-'*60)
-                            
-                            num1 = complex(input('Primeira entrada:'))
+                if escolha_user in 'ls ':
 
-                            while True:
-                                try:
-                                    num2 = complex(input('Segunda entrada:'))
-                                    break
+                    if escolha_user == 'l':
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        p.numcomplexo()
 
-                                except ValueError:
-                                    print(cores[1],'Erro entrada invalida!',cores[0])
-                                    print('-'*60)
-
-                            if escolha_user == 1:
-
-                                gravahist(f"Números somados {num1} + {num2}:\n")
-                                gravahist(f"O resultado da sua soma é {str(num1 + num2)[1:-1]}\n")
-                                gravahist(f"{'-'*60}\n")
-
-                                print(cores[2],f"O resultado da sua soma é {str(num1 + num2)[1:-1]}",cores[0])
-                                print('-'*60)
-                                break
-                            
-                            elif escolha_user == 2:
-
-                                gravahist(f"Números subtraidos {num1} - {num2}:\n")
-                                gravahist(f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}\n")
-                                gravahist(f"{'-'*60}\n")
-
-                                print(cores[2],f"O resultado da sua Subtração é {str(num1 - num2)[1:-1]}",cores[0])
-                                print('-'*60)
-                                break
-
-                            elif escolha_user == 3:
-                                
-                                gravahist(f"Números Multiplicados {num1} * {num2}:\n")
-                                gravahist(f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}\n")
-                                gravahist(f"{'-'*60}\n")
-
-                                print(cores[2],f"O resultado da sua Multiplicação é {str(num1 * num2)[1:-1]}",cores[0])
-                                print('-'*60)
-                                break
-
-                            elif escolha_user == 4:
-
-                                gravahist(f"Números Dividisos {num1} + {num2}:\n")
-                                gravahist(f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}\n")
-                                gravahist(f"{'-'*60}\n")
-
-                                print(cores[2],f"O resultado da sua Divisão é {str(num1 / num2)[1:-1]}",cores[0])
-                                print('-'*60)
-                                break
-
-                            elif escolha_user == 5:
-
-                                gravahist(f"Potência dos números {num1} + {num2}:\n")
-                                gravahist(f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}\n")
-                                gravahist(f"{'-'*60}\n")
-
-                                print(cores[2],f"O resultado da sua Potência é {str(num1 ** num2)[1:-1]}",cores[0])
-                                print('-'*60)
-                                break
-                        
-                        except ValueError:
-                            print(cores[1],'Erro entrada invalida!',cores[0])
-
-                    perguntar = perguntas.pbasicas()
-                    
-                    if perguntar == False:
+                    elif escolha_user == 's':
                         os.system('cls' if os.name == 'nt' else 'clear')
                         return True
                     
                     else:
-                        limpeza = perguntas.limp()
-                        if limpeza == True:
+                        print(cores[1],'Erro entrada invalida!',cores[0])
+                        print('-'*60)
+                    
+                
+                elif escolha_user.isnumeric():
+                    escolha_user = int(escolha_user)
+
+                    if escolha_user > 5:
+                        print(cores[1],'Erro entrada invalida!',cores[0])
+                        print('-'*60)
+                    
+                    else:
+                        print('Exemplos de entradas:')
+                        print(cores[3],f"{'3+5j':>24}",cores[0])
+                        print('-'*60)
+
+                        opera_pt2 = OpMatematicas.numcomplexpt2(escolha_user=escolha_user)
+
+                        if opera_pt2 == '-limpa-':
                             os.system('cls' if os.name == 'nt' else 'clear')
-                            continue
+                            p.numcomplexo()
+                        
+                        elif opera_pt2 == '-sair-':
+                            os.system('cls' if os.name == 'nt' else 'clear')
+                            return True
                         
                         else:
-                            print('-'*60)
                             continue
+                        
+            
+                else:
+                    print(cores[1],'Erro entrada invalida!',cores[0])
+                    print('-'*60)
 
             except ValueError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
+                print('-'*60)
 
     def hipot():
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -380,41 +411,67 @@ class OpMatematicas:
 
         while True:
             try:
-                co = float(input('Entre com o valor do cateto oposto: '))
+                co = input('Entre com o valor do cateto oposto: ')
 
-                while True:
-                    try:
-                        ca = float(input('Entre com o valor do cateto adjacente: '))
-                        break
-
-                    except ValueError:
-                        print(cores[1],'Erro entrada invalida!',cores[0])
-                        print('-'*60)
-                
-                gravahist(f"cateto oposto:{co}\ncateto adjacente:{ca}\n")
-                gravahist(f'A hipotenusa é {(ca**2 + co**2)**(1/2)}\n')
-                gravahist(f"{'-'*60}\n")
-
-
-                print(cores[2],f'A hipotenusa é {(ca**2 + co**2)**(1/2)}',cores[0])
-                print('-'*60)
-
-                perguntar = perguntas.pbasicas()
-
-                if perguntar == False:
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    return True
-                
-                else:
-                    limpeza = perguntas.limp()
-                    if limpeza == True:
+                if co in 'ls ':
+                    if co == 'l':
                         os.system('cls' if os.name == 'nt' else 'clear')
                         p.hipotnu()
+
+                    elif co == 's':
+                        os.system('cls' if os.name == 'nt' else 'clear')
+                        return True
                     
                     else:
+                        print(cores[1],'Erro entrada invalida!',cores[0])
                         print('-'*60)
-                        continue
+                    
+                elif co[0].isnumeric():
+
+                    while True:
+                        ca = input('Entre com o valor do cateto adjacente: ')
+
+                        if ca in 'ls ':
+
+                            if ca == 'l':
+                                os.system('cls' if os.name == 'nt' else 'clear')
+                                p.hipotnu()
+                                break
+
+                            elif ca == 's':
+                                
+                                os.system('cls' if os.name == 'nt' else 'clear')
+                                return True
+                            
+                            else:
+                                print(cores[1],'Erro entrada invalida!',cores[0])
+                                print('-'*60)
+                    
+                        elif ca[0].isnumeric():
+                                
+                                gravahist(f"cateto oposto:{co}\ncateto adjacente:{ca}\n")
+                                gravahist(f'A hipotenusa é {(float(ca)**2 + float(co)**2)**(1/2)}\n')
+                                gravahist(f"{'-'*60}\n")
+
+
+                                print(cores[2],f'A hipotenusa é {(float(ca)**2 + float(co)**2)**(1/2)}',cores[0])
+                                print('-'*60)
+                                break
+                        
+
+                        else:
+                            print(cores[1],'Erro entrada invalida!',cores[0])
+                            print('-'*60)
+                    
+                else:
+                    print(cores[1],'Erro entrada invalida!',cores[0])
+                    print('-'*60)
+
 
             except ValueError:
+                print(cores[1],'Erro entrada invalida!',cores[0])
+                print('-'*60)
+            
+            except UnboundLocalError:
                 print(cores[1],'Erro entrada invalida!',cores[0])
                 print('-'*60)
