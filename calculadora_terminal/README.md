@@ -22,6 +22,6 @@ Colocando em pratica conhecimentos em Python, assim usando bibliotecas externas,
 ## Demonstração
 
 <div align="center">
-  <img height="150" src=""  />
+  <img height="200" src="https://imgflip.com/gif/7qsxue"  />
 </div>
 
