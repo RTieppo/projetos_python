@@ -1,5 +1,2 @@
-pyinstaller C:\Users\Tieppo\Desktop\projetos_python\calculadora_terminal\__main__.py --noupx  --name="Calculon" --icon="calculadora_terminal\icon\calculon.ico" --add-data="calculadora_terminal\icon\calculon.ico;." -F
-
-
-pyinstaller C:\Users\ricardo.martins\Desktop\projetos_python\calculadora_terminal\__main__.py --noupx  --name="Calculon" --icon="calculadora_terminal\icon\calculon.ico" --add-data="calculadora_terminal\icon\calculon.ico;." -F
+pyinstaller calculadora_terminal\__main__.py --noupx  --name="Calculon" --icon="calculadora_terminal\icon\calculon.ico" --add-data="calculadora_terminal\icon\calculon.ico;." -F
 
