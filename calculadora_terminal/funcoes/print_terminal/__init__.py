@@ -10,6 +10,9 @@ def inicial():
     print('[8] Histórico\n[9] Limpar\n[0] Exit')
     print('-'*60)
 
+def escolha():
+    print(cores[2],'Escolha uma das opções acima [1,2,3,4,5,6,7,8,9,0]:',cores[0], end='')
+
 def fim():
     print('-'*60)
     print(f"{'Até a Proxima...':^60}")

@@ -10,12 +10,19 @@ def inicia():
 
     p.inicial()
     cria_txt = criatxt()
-    sleep(0.3)
+    inicia = None
 
     while True:
         try:
-            print('\033[0;32mEscolha uma das opções acima [1,2,3,4,5,6,7,8,9,0]\033[m', end='')
-            escolha_user = int(input(': '))
+
+            p.escolha()
+            if inicia == None:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                p.inicial()
+                p.escolha()
+                inicia = True
+
+            escolha_user = int(input(''))
 
             if escolha_user > 9:
                 print(cores[1],'Erro entrada invalida!',cores[0])
