@@ -20,9 +20,7 @@ Colocando em pratica conhecimentos em Python, assim usando bibliotecas externas,
 - Tabuada
 
 ## Demonstração
-
-<div align="center">
+* [Calculadora no Terminal EXE](https://github.com/RTieppo/Projetos-Python/tree/main/calculadora_terminal/exe)
+<div align="center">  
   <img height="500" src="https://github.com/RTieppo/Projetos-Python/assets/105604399/f528449a-0427-4043-b03c-e5fe0640c1ab"/>
 </div>
-
-[Calculadora no Terminal EXE](https://github.com/RTieppo/Projetos-Python/tree/main/Gerador_de_senha/exe)
