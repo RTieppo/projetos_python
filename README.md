@@ -6,3 +6,6 @@ Esse repositório conta com projetos variados em Python, alguns projetos são so
 
 * [Calculadora no Terminal](https://github.com/RTieppo/Projetos-Python/tree/main/calculadora_terminal)
 * [Gerador de senha](https://github.com/RTieppo/Projetos-Python/tree/main/Gerador_de_senha)
+
+## Demonstração
+[Arquivos exe](https://github.com/RTieppo/Projetos-Python/releases)
