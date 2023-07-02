@@ -1,11 +1,30 @@
 from PySimpleGUI import PySimpleGUI as sg
 
 from funcoes_extras import tela_play as tela
-
-
+from funcoes_extras import play_acoes as acoes
 
 def start():
     try:
+        local_music = acoes.dir_music()
+
+        while local_music == False:
+
+            local_music = acoes.dir_music(tema=False, titulo='Erro! Caminho invalido.')
+
+            if local_music == '-break-':
+                break
+        
+        return local_music
+        
+    except Exception as erro:
+        print(erro)
+
+def start_play(caminho_pasta):
+    try:
+
+        
+
+        #Configurações iniciais dos botoes
         aleatorio_button = play_button = loop_button = True
 
         tela_inicial = tela.tela_main()
@@ -49,10 +68,13 @@ def start():
                 else:
                     window['-loop-'].update(r'play_musica\img\play\replay_25.png')
                     loop_button = True
-
+        
     except Exception as erro:
         print(erro)
 
 
 if __name__ == '__main__':
     inicia = start()
+
+    if inicia != None and inicia != False:
+        inicia_play = start_play(caminho_pasta=inicia)
