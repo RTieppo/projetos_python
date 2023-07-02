@@ -19,16 +19,12 @@ def tela_main():
     cabeca = [
         [sg.Text('PySimpleGUI Player - By RTieppo', justification='c')],
         [sg.Frame('',layout=display)],
-        [sg.Text('Aperte o Play...',justification='c')]
+        [sg.Text('Aperte o Play...',justification='c',key='-name_music-')]
 
     ]
 
     corpo = [
         [sg.Image(r'play_musica\img\play\aleatorio_25.png',pad=(20,10), enable_events=True,key='-aleatorio-'),sg.Image(r'play_musica\img\play\costas_25.png',pad=(20,10),enable_events=True,key='-volta-'), sg.Image(r'play_musica\img\play\botao-play_25.png',pad=(20,10),enable_events=True,key='-play-pause-'), sg.Image(r'play_musica\img\play\proximo_25.png',pad=(20,10),enable_events=True,key='-proximo-'), sg.Image(r'play_musica\img\play\replay_25.png',pad=(20,10),enable_events=True,key='-loop-')],
-    ]
-
-    pe =[
-
     ]
 
     main =[

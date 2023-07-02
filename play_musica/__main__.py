@@ -1,4 +1,6 @@
+import os
 from PySimpleGUI import PySimpleGUI as sg
+from pygame import mixer
 
 from funcoes_extras import tela_play as tela
 from funcoes_extras import play_acoes as acoes
@@ -14,7 +16,11 @@ def start():
             if local_music == '-break-':
                 break
         
-        return local_music
+        if local_music != '-break-':
+            return local_music
+        
+        else:
+            return False
         
     except Exception as erro:
         print(erro)
@@ -22,7 +28,12 @@ def start():
 def start_play(caminho_pasta):
     try:
 
-        
+        mixer.init()
+
+        lista_musicas = acoes.caminho_music(caminho_pasta)
+        numero_musicas = len(lista_musicas)
+        posicao_musica = 0
+
 
         #Configurações iniciais dos botoes
         aleatorio_button = play_button = loop_button = True
@@ -45,19 +56,56 @@ def start_play(caminho_pasta):
                     aleatorio_button = True
             
             elif window == tela_inicial and events == '-volta-':
-                print('volta')
+                
+                if posicao_musica + 1 <= numero_musicas and posicao_musica > 0:
+                    if play_button == True:
+                        window['-play-pause-'].update(r'play_musica\img\play\pausa_25.png')
+                        play_button = False
+
+                    acoes.stop_music()
+                    posicao_musica -= 1
+                    acoes.play_music(lista_musicas[posicao_musica])
+                    acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
+
+                else:
+                    acoes.stop_music()
+                    posicao_musica = numero_musicas-1
+                    acoes.play_music(lista_musicas[posicao_musica])
+                    acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
 
             elif window == tela_inicial and events == '-play-pause-':
+                print(play_button)
+
                 if play_button == True:
                     window['-play-pause-'].update(r'play_musica\img\play\pausa_25.png')
                     play_button = False
-                
+
+                    if acoes.tocando() == False:
+                        acoes.play_music(lista_musicas[posicao_musica])
+                        acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
+
                 else:
                     window['-play-pause-'].update(r'play_musica\img\play\botao-play_25.png')
                     play_button = True
+                    if acoes.tocando():
+                        acoes.pause_music()
 
             elif window == tela_inicial and events == '-proximo-':
-                print('next')
+                
+                if posicao_musica + 1 < numero_musicas:
+                    if play_button == True:
+                        window['-play-pause-'].update(r'play_musica\img\play\pausa_25.png')
+                        play_button = False
+                    acoes.stop_music()
+                    posicao_musica+= 1
+                    acoes.play_music(lista_musicas[posicao_musica])
+                    acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
+                
+                else:
+                    acoes.stop_music()
+                    posicao_musica = 0
+                    acoes.play_music(lista_musicas[posicao_musica])
+                    acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
 
             elif window == tela_inicial and events == '-loop-':
 

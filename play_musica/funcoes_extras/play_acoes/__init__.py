@@ -1,6 +1,8 @@
 import re
-from PySimpleGUI import PySimpleGUI as sg
+import os
 
+from pygame import mixer
+from PySimpleGUI import PySimpleGUI as sg
 
 #Definindo tema geral
 tema_g = 'DarkBlue2'
@@ -38,3 +40,29 @@ def dir_music(tema=None,titulo = 'Escolha o local das Musicas.'):
     except Exception as erro:
         print(erro)
 
+def caminho_music(caminho_geral):
+    musicas = list()
+
+    for (root, dirs, files) in os.walk(caminho_geral):
+        for file in files:
+            musicas.append(root + os.sep + file)
+    return musicas
+
+def info_display(window,musica,posicao):
+    window['-name_music-'].update(os.path.basename(musica[posicao]))
+
+
+def tocando():
+    if mixer.music.get_busy() == True:
+        return True
+    return False
+
+def play_music(sound_path):
+    mixer.music.load(sound_path)
+    mixer.music.play()
+
+def pause_music():
+    mixer.music.pause()
+
+def stop_music():
+    mixer.music.stop()
