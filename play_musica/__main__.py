@@ -42,6 +42,9 @@ def start_play(caminho_pasta):
         #Configurações iniciais dos botoes
         aleatorio_button = play_button = loop_button = True
 
+        #config loop musica
+        loop = ''
+
         tela_inicial = tela.tela_main()
 
         while True:
@@ -50,15 +53,18 @@ def start_play(caminho_pasta):
             print(events)
 
             for event in pygame.event.get():
+                if event.type == MUSIC_END_EVENT:
 
-                if event.type == pygame.QUIT:
-                    print(False)
-                
-                elif event.type == MUSIC_END_EVENT:
-                    print(event)
-                    posicao_musica += 1
-                    acoes.play_music(lista_musicas[posicao_musica])
-                    acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
+                    if loop == '-inicia-':
+                        
+                        acoes.play_music(replay)
+                        acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
+                    
+                    else:
+                        posicao_musica += 1
+                        acoes.play_music(lista_musicas[posicao_musica])
+                        acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
+            
 
             if window == tela_inicial and events == sg.WIN_CLOSED:
                 break
@@ -81,11 +87,13 @@ def start_play(caminho_pasta):
                         play_button = False
 
                     posicao_musica -= 1
+                    replay = lista_musicas[posicao_musica]
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
 
                 else:
                     posicao_musica = numero_musicas-1
+                    replay = lista_musicas[posicao_musica]
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
 
@@ -113,12 +121,14 @@ def start_play(caminho_pasta):
                         play_button = False
                     
                     posicao_musica+= 1
+                    replay = lista_musicas[posicao_musica]
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                 
                 else:
 
                     posicao_musica = 0
+                    replay = lista_musicas[posicao_musica]
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
 
@@ -127,10 +137,13 @@ def start_play(caminho_pasta):
                 if loop_button == True:
                     window['-loop-'].update(r'play_musica\img\play\replay_25_cor.png')
                     loop_button = False
+                    loop = '-inicia-'
+                    replay = lista_musicas[posicao_musica]
                 
                 else:
                     window['-loop-'].update(r'play_musica\img\play\replay_25.png')
                     loop_button = True
+                    loop = '-cancela-'
         
     except Exception as erro:
         print(erro)
