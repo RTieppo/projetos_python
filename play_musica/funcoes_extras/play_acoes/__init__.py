@@ -57,12 +57,9 @@ def tocando():
         return True
     return False
 
-def play_music(sound_path):
-    mixer.music.load(sound_path)
+def play_music(pasta_sound):
+    mixer.music.load(pasta_sound)
     mixer.music.play()
 
 def pause_music():
     mixer.music.pause()
-
-def stop_music():
-    mixer.music.stop()
