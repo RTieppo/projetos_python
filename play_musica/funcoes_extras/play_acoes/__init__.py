@@ -12,7 +12,7 @@ tema_erro = 'DarkRed2'
 
 
 #Base de comparação
-analise_caminho = re.compile(r'^[A-Za-z]:(?:/|\\)(?:[\w-]+(?:/|\\))*[\w-]+(?:\.\w+)?$')
+analise_caminho = re.compile(r'^[A-Za-z]:(?:/|\\)(?:[\w.-]+(?:/|\\))*[\w.-]+(?:\.\w+)?$')
 
 def dir_music(tema=None,titulo = 'Escolha o local das Musicas.'):
     
@@ -46,6 +46,7 @@ def caminho_music(caminho_geral):
     for (root, dirs, files) in os.walk(caminho_geral):
         for file in files:
             musicas.append(root + os.sep + file)
+    print(musicas)
     return musicas
 
 def info_display(window,musica,posicao):
