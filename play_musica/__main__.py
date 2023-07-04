@@ -1,4 +1,5 @@
 from random import shuffle
+from time import sleep
 from PySimpleGUI import PySimpleGUI as sg
 from pygame import mixer, display ,USEREVENT, event
 
@@ -73,6 +74,11 @@ def start_play(caminho_pasta):
                         replay = lista_musicas[posicao_musica]
                         acoes.play_music(lista_musicas[posicao_musica])
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
+
+            if mixer.music.get_busy():
+                current_position = mixer.music.get_pos() / 1000
+                print(f"Tempo atual da música: {current_position} segundos")
+
 
             if window == tela_inicial and events == sg.WIN_CLOSED:
                 break
