@@ -1,6 +1,7 @@
-import os
+from random import shuffle
 from PySimpleGUI import PySimpleGUI as sg
-import pygame
+from pygame import mixer, display ,USEREVENT, event
+
 
 
 from funcoes_extras import tela_play as tela
@@ -30,12 +31,13 @@ def start_play(caminho_pasta):
     try:
         
         #ajuste de mix de musica
-        pygame.mixer.init()
-        pygame.display.init()
-        MUSIC_END_EVENT = pygame.USEREVENT + 1
-        pygame.mixer.music.set_endevent(MUSIC_END_EVENT)
+        mixer.init()
+        display.init()
+        MUSIC_END_EVENT = USEREVENT + 1
+        mixer.music.set_endevent(MUSIC_END_EVENT)
 
         lista_musicas = acoes.caminho_music(caminho_pasta)
+        lista_base = acoes.caminho_music(caminho_pasta)
         numero_musicas = len(lista_musicas)
         posicao_musica = 0
 
@@ -50,33 +52,42 @@ def start_play(caminho_pasta):
         while True:
             window, events, values = sg.read_all_windows(timeout=1000)
 
-            print(events)
-
-            for event in pygame.event.get():
-                if event.type == MUSIC_END_EVENT:
+            for evento in event.get():
+                if evento.type == MUSIC_END_EVENT:
 
                     if loop == '-inicia-':
                         
                         acoes.play_music(replay)
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                     
-                    else:
+                    elif posicao_musica + 1 < numero_musicas:
+
+                        replay = lista_musicas[posicao_musica]
                         posicao_musica += 1
                         acoes.play_music(lista_musicas[posicao_musica])
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
-            
+                    
+                    else:
+
+                        posicao_musica = 0
+                        replay = lista_musicas[posicao_musica]
+                        acoes.play_music(lista_musicas[posicao_musica])
+                        acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
 
             if window == tela_inicial and events == sg.WIN_CLOSED:
                 break
 
             elif window == tela_inicial and events == '-aleatorio-':
+
                 if aleatorio_button == True:
                     window['-aleatorio-'].update(r'play_musica/img/play/aleatorio_25_cor.png')
                     aleatorio_button = False
+                    shuffle(lista_musicas)
                 
                 else:
                     window['-aleatorio-'].update(r'play_musica\img\play\aleatorio_25.png')
                     aleatorio_button = True
+                    lista_musicas = lista_base
             
             elif window == tela_inicial and events == '-volta-':
                 
@@ -119,7 +130,7 @@ def start_play(caminho_pasta):
                     if play_button == True:
                         window['-play-pause-'].update(r'play_musica\img\play\pausa_25.png')
                         play_button = False
-                    
+
                     posicao_musica+= 1
                     replay = lista_musicas[posicao_musica]
                     acoes.play_music(lista_musicas[posicao_musica])

@@ -46,7 +46,6 @@ def caminho_music(caminho_geral):
     for (root, dirs, files) in os.walk(caminho_geral):
         for file in files:
             musicas.append(root + os.sep + file)
-    print(musicas)
     return musicas
 
 def info_display(window,musica,posicao):
