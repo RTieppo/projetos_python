@@ -1,5 +1,4 @@
 from random import shuffle
-from time import sleep
 from PySimpleGUI import PySimpleGUI as sg
 from pygame import mixer, display ,USEREVENT, event
 
@@ -49,22 +48,22 @@ def start_play(caminho_pasta):
         loop = ''
 
         #leitura de musica
-        duracao_musica =  tempo_atual_musica = 0
+        tempo_atual_musica = 0
 
         tela_inicial = tela.tela_main()
 
         while True:
-            window, events, values = sg.read_all_windows(timeout=900)
+            window, events, values = sg.read_all_windows(timeout=1000)
+            
             if mixer.music.get_busy():
                 tempo_atual_musica += 1
-            
-            minuto = tempo_atual_musica//60
-            segundos = tempo_atual_musica%60
+                minuto = tempo_atual_musica//60
+                segundos = tempo_atual_musica%60
 
-            if segundos < 10:
-                segundos = f'0{segundos}'
+                if segundos < 10:
+                    segundos = f'0{segundos}'
 
-            tela_inicial['-tempo_corrido-'].update(f'{minuto}:{segundos}')
+                tela_inicial['-tempo_corrido-'].update(f'{minuto}:{segundos}')
 
             for evento in event.get():
                 if evento.type == MUSIC_END_EVENT:
@@ -72,38 +71,26 @@ def start_play(caminho_pasta):
                     if loop == '-inicia-':
                         acoes.play_music(replay)
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
-                        musica = mixer.Sound(lista_musicas[posicao_musica])
-                        duracao_musica = musica.get_length()
-                        musica = mixer.Sound(lista_musicas[posicao_musica])
-                        duracao_musica = musica.get_length()
-                        ajusta = f'{duracao_musica/60:.2f}'
-
-                        tela_inicial['-tempo_total-'].update(f'{ajusta.replace(".",":")}')
+                        acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
                     
                     elif posicao_musica + 1 < numero_musicas:
 
                         replay = lista_musicas[posicao_musica]
                         posicao_musica += 1
+                        tempo_atual_musica = 0
+
                         acoes.play_music(lista_musicas[posicao_musica])
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
-                        musica = mixer.Sound(lista_musicas[posicao_musica])
-                        duracao_musica = int(musica.get_length())
-                    
-                        tela_inicial['-tempo_total-'].update(f'{duracao_musica//60}:{duracao_musica%60}')
+                        acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
 
-                        tempo_atual_musica = 0
                     
                     else:
                         posicao_musica = 0
                         replay = lista_musicas[posicao_musica]
+                        tempo_atual_musica = 0
                         acoes.play_music(lista_musicas[posicao_musica])
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
-                        musica = mixer.Sound(lista_musicas[posicao_musica])
-                        duracao_musica = int(musica.get_length())
-                    
-                        tela_inicial['-tempo_total-'].update(f'{duracao_musica//60}:{duracao_musica%60}')
-
-                        tempo_atual_musica = 0
+                        acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
 
             if window == tela_inicial and events == sg.WIN_CLOSED:
                 break
@@ -130,27 +117,19 @@ def start_play(caminho_pasta):
 
                     posicao_musica -= 1
                     replay = lista_musicas[posicao_musica]
+                    tempo_atual_musica = 0
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
-                    musica = mixer.Sound(lista_musicas[posicao_musica])
-                    duracao_musica = int(musica.get_length())
-                    
-                    tela_inicial['-tempo_total-'].update(f'{duracao_musica//60}:{duracao_musica%60}')
+                    acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
 
-                    tempo_atual_musica = 0
 
                 else:
                     posicao_musica = numero_musicas-1
                     replay = lista_musicas[posicao_musica]
+                    tempo_atual_musica = 0
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
-
-                    musica = mixer.Sound(lista_musicas[posicao_musica])
-                    duracao_musica = int(musica.get_length())
-
-                    tela_inicial['-tempo_total-'].update(f'{duracao_musica//60}:{duracao_musica%60}')
-
-                    tempo_atual_musica = 0
+                    acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
 
             elif window == tela_inicial and events == '-play-pause-':
 
@@ -159,11 +138,9 @@ def start_play(caminho_pasta):
                     play_button = False
 
                     if acoes.tocando() == False:
-                        musica = mixer.Sound(lista_musicas[posicao_musica])
-                        duracao_musica = int(musica.get_length())
-                        window['-tempo_total-'].update(f'{duracao_musica//60}:{duracao_musica%60}')
                         acoes.play_music(lista_musicas[posicao_musica])
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
+                        acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
                         tempo_atual_musica = 0
 
                 else:
@@ -182,29 +159,19 @@ def start_play(caminho_pasta):
 
                     posicao_musica+= 1
                     replay = lista_musicas[posicao_musica]
+                    tempo_atual_musica = 0
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
-
-                    musica = mixer.Sound(lista_musicas[posicao_musica])
-                    duracao_musica = int(musica.get_length())
-                    
-                    tela_inicial['-tempo_total-'].update(f'{duracao_musica//60}:{duracao_musica%60}')
-
-                    tempo_atual_musica = 0
+                    acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
 
                 else:
 
                     posicao_musica = 0
                     replay = lista_musicas[posicao_musica]
+                    tempo_atual_musica = 0
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
-
-                    musica = mixer.Sound(lista_musicas[posicao_musica])
-                    duracao_musica = int(musica.get_length())
-                    
-                    tela_inicial['-tempo_total-'].update(f'{duracao_musica//60}:{duracao_musica%60}')
-
-                    tempo_atual_musica = 0
+                    acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
 
             elif window == tela_inicial and events == '-loop-':
 

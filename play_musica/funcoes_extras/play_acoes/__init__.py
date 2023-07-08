@@ -51,6 +51,21 @@ def caminho_music(caminho_geral):
 def info_display(window,musica,posicao):
     window['-name_music-'].update(os.path.basename(musica[posicao]))
 
+def tempo_music(window,musica):
+    
+    musica = mixer.Sound(musica)
+
+    duracao_musica = int(musica.get_length())
+    minuto = duracao_musica//60
+    segundos = duracao_musica%60
+
+    if segundos < 10:
+        segundos = f'0{segundos}'
+
+    window['-tempo_total-'].update(f'{minuto}:{segundos}')
+
+def ajuste_barra(window,tempo):
+    pass
 
 def tocando():
     if mixer.music.get_busy() == True:
