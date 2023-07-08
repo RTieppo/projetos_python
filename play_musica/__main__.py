@@ -47,6 +47,10 @@ def start_play(caminho_pasta):
         #config loop musica
         loop = ''
 
+        #valida pause
+        pause = False
+        pause_timer = 0.0
+
         #leitura de musica
         tempo_atual_musica = 0
 
@@ -59,10 +63,12 @@ def start_play(caminho_pasta):
                 tempo_atual_musica += 1
                 minuto = tempo_atual_musica//60
                 segundos = tempo_atual_musica%60
+                tela_inicial['-progress-'].update(tempo_atual_musica)
 
                 if segundos < 10:
                     segundos = f'0{segundos}'
-
+                
+                pause_timer = float(f'{minuto}.{segundos}')
                 tela_inicial['-tempo_corrido-'].update(f'{minuto}:{segundos}')
 
             for evento in event.get():
@@ -72,6 +78,7 @@ def start_play(caminho_pasta):
                         acoes.play_music(replay)
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                         acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
+                        acoes.ajuste_barra(tela_inicial,lista_musicas[posicao_musica])
                     
                     elif posicao_musica + 1 < numero_musicas:
 
@@ -82,6 +89,7 @@ def start_play(caminho_pasta):
                         acoes.play_music(lista_musicas[posicao_musica])
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                         acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
+                        acoes.ajuste_barra(tela_inicial,lista_musicas[posicao_musica])
 
                     
                     else:
@@ -91,6 +99,7 @@ def start_play(caminho_pasta):
                         acoes.play_music(lista_musicas[posicao_musica])
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                         acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
+                        acoes.ajuste_barra(tela_inicial,lista_musicas[posicao_musica])
 
             if window == tela_inicial and events == sg.WIN_CLOSED:
                 break
@@ -121,6 +130,7 @@ def start_play(caminho_pasta):
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                     acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
+                    acoes.ajuste_barra(tela_inicial,lista_musicas[posicao_musica])
 
 
                 else:
@@ -130,25 +140,26 @@ def start_play(caminho_pasta):
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                     acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
+                    acoes.ajuste_barra(tela_inicial,lista_musicas[posicao_musica])
 
             elif window == tela_inicial and events == '-play-pause-':
 
                 if play_button == True:
                     window['-play-pause-'].update(r'play_musica\img\play\pausa_25.png')
                     play_button = False
-
+                    
                     if acoes.tocando() == False:
                         acoes.play_music(lista_musicas[posicao_musica])
                         acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                         acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
+                        acoes.ajuste_barra(tela_inicial,lista_musicas[posicao_musica])
                         tempo_atual_musica = 0
-
+            
                 else:
                     window['-play-pause-'].update(r'play_musica\img\play\botao-play_25.png')
                     play_button = True
                     if acoes.tocando():
                         acoes.pause_music()
-                        tempo_atual_musica = 0
 
             elif window == tela_inicial and events == '-proximo-':
                 
@@ -163,6 +174,7 @@ def start_play(caminho_pasta):
                     acoes.play_music(lista_musicas[posicao_musica])
                     acoes.info_display(tela_inicial,lista_musicas,posicao_musica)
                     acoes.tempo_music(tela_inicial,lista_musicas[posicao_musica])
+                    acoes.ajuste_barra(tela_inicial,lista_musicas[posicao_musica])
 
                 else:
 

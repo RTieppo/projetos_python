@@ -65,7 +65,12 @@ def tempo_music(window,musica):
     window['-tempo_total-'].update(f'{minuto}:{segundos}')
 
 def ajuste_barra(window,tempo):
-    pass
+
+    musica = mixer.Sound(tempo)
+
+    duracao_musica = int(musica.get_length())
+    
+    window['-progress-'].update(current_count= 0, max=duracao_musica)
 
 def tocando():
     if mixer.music.get_busy() == True:
@@ -78,3 +83,7 @@ def play_music(pasta_sound):
 
 def pause_music():
     mixer.music.pause()
+
+def continua_play(tempo):
+    mixer.music.set_pos(tempo)
+    mixer.music.play()

@@ -24,7 +24,8 @@ def tela_main():
     ]
 
     progress =[
-        [sg.ProgressBar(max_value=5,orientation='h',size=(50,1),border_width=1,key='-progress-')],
+        [sg.ProgressBar(5, orientation='h',size=(50,1),border_width=1,key='-progress-')],
+
         [sg.Text('0:00', key='-tempo_corrido-'),sg.Canvas(size=(285,10), pad=None),sg.Text('0:00',key='-tempo_total-')]
     ]
     
