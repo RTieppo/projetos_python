@@ -7,20 +7,27 @@ tema_g = 'DarkBlue2'
 
 #Define fonte
 
+font_titulo = ('Britannic Bold',12)
+font_artista = ('Arial',8)
+
 
 def tela_main():
     
     sg.theme(tema_g)
 
     display =[
-        [sg.Image(r'play_musica\img\test\pylot.png')]
+        [sg.Image(r'play_musica\img\display\lofi_base (1).png',key='-display_img-')]
     ]
 
     cabeca = [
         [sg.Text('PySimpleGUI Player - By RTieppo', justification='c')],
         [sg.Frame('',layout=display)],
-        [sg.Text('Aperte o Play...',justification='c',key='-name_music-')]
 
+    ]
+
+    info_play = [
+        [sg.Text('Aperte o Play...',key='-name_music-',font=font_titulo)],
+        [sg.Text('', key='-artista-', font=font_artista)]
     ]
 
     progress =[
@@ -35,11 +42,12 @@ def tela_main():
 
     main =[
         [sg.Column(layout=cabeca,element_justification='c')],
-        [sg.HSep()],
-        [sg.Column(layout=progress)],
+        [sg.Column(layout=info_play,element_justification='l')],
+
+        [sg.Column(layout=progress,element_justification='c')],
         [sg.Column(layout=corpo,element_justification='c',pad=(20,20))]
     ]
 
-    return sg.Window('MIX.PY', finalize=True, size=(400,600), layout = main,
-    margins=(10,10), element_justification='c', icon= (r'play_musica\img\icon\botoes.ico'),
+    return sg.Window('MIX.PY', finalize=True, size=(400,610), layout = main,
+    margins=(10,10), icon= (r'play_musica\img\icon\botoes.ico'),
     text_justification='c')

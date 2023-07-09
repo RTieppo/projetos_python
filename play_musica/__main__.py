@@ -36,20 +36,19 @@ def start_play(caminho_pasta):
         MUSIC_END_EVENT = USEREVENT + 1
         mixer.music.set_endevent(MUSIC_END_EVENT)
 
+        lista_img_display = acoes.dir_img()
+        shuffle(lista_img_display)
         lista_musicas = acoes.caminho_music(caminho_pasta)
         lista_base = acoes.caminho_music(caminho_pasta)
         numero_musicas = len(lista_musicas)
-        posicao_musica = 0
+        numero_display_img = len(lista_img_display)
+        posicao_musica = posicao_display = 0
 
         #Configurações iniciais dos botoes
         aleatorio_button = play_button = loop_button = True
 
         #config loop musica
         loop = ''
-
-        #valida pause
-        pause = False
-        pause_timer = 0.0
 
         #leitura de musica
         tempo_atual_musica = 0
@@ -120,9 +119,20 @@ def start_play(caminho_pasta):
                 
                 if posicao_musica + 1 <= numero_musicas and posicao_musica > 0:
 
+                    print(lista_img_display[posicao_display])
+
                     if play_button == True:
                         window['-play-pause-'].update(r'play_musica\img\play\pausa_25.png')
                         play_button = False
+                    
+                    if posicao_display + 1 <= numero_display_img and posicao_display > 0:
+
+                        posicao_display -= 1
+                        acoes.altera_display(tela_inicial,lista_img_display[posicao_display])
+                    
+                    else:
+                        posicao_display = numero_display_img -1
+                        acoes.altera_display(tela_inicial,lista_img_display[posicao_display])
 
                     posicao_musica -= 1
                     replay = lista_musicas[posicao_musica]
@@ -134,6 +144,16 @@ def start_play(caminho_pasta):
 
 
                 else:
+
+                    if posicao_display <= numero_display_img and posicao_display == 0:
+
+                        posicao_display = numero_display_img -1
+                        acoes.altera_display(tela_inicial,lista_img_display[posicao_display])
+                    
+                    else:
+                        posicao_display = numero_display_img -1
+                        acoes.altera_display(tela_inicial,lista_img_display[posicao_display])
+
                     posicao_musica = numero_musicas-1
                     replay = lista_musicas[posicao_musica]
                     tempo_atual_musica = 0
@@ -168,6 +188,15 @@ def start_play(caminho_pasta):
                         window['-play-pause-'].update(r'play_musica\img\play\pausa_25.png')
                         play_button = False
 
+                    if posicao_display + 1 < numero_display_img:
+
+                        posicao_display += 1
+                        acoes.altera_display(tela_inicial,lista_img_display[posicao_display])
+                    
+                    else:
+                        posicao_display = 0
+                        acoes.altera_display(tela_inicial,lista_img_display[posicao_display])
+
                     posicao_musica+= 1
                     replay = lista_musicas[posicao_musica]
                     tempo_atual_musica = 0
@@ -177,6 +206,14 @@ def start_play(caminho_pasta):
                     acoes.ajuste_barra(tela_inicial,lista_musicas[posicao_musica])
 
                 else:
+                    if posicao_display + 1 < numero_display_img:
+
+                        posicao_display += 1
+                        acoes.altera_display(tela_inicial,lista_img_display[posicao_display])
+                    
+                    else:
+                        posicao_display = 0
+                        acoes.altera_display(tela_inicial,lista_img_display[posicao_display])
 
                     posicao_musica = 0
                     replay = lista_musicas[posicao_musica]

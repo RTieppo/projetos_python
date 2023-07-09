@@ -8,9 +8,6 @@ from PySimpleGUI import PySimpleGUI as sg
 tema_g = 'DarkBlue2'
 tema_erro = 'DarkRed2'
 
-#Define fonte
-
-
 #Base de comparação
 analise_caminho = re.compile(r'^[A-Za-z]:(?:/|\\)(?:[\w.-]+(?:/|\\))*[\w.-]+(?:\.\w+)?$')
 
@@ -40,6 +37,17 @@ def dir_music(tema=None,titulo = 'Escolha o local das Musicas.'):
     except Exception as erro:
         print(erro)
 
+def dir_img():
+    lista_img = os.listdir(r'.\play_musica\img\display')
+    return lista_img
+
+def altera_display(window,img):
+
+    altera = f'.\play_musica\img\display\{img}'
+    window['-display_img-'].update(altera)
+
+
+
 def caminho_music(caminho_geral):
     musicas = list()
 
@@ -49,7 +57,11 @@ def caminho_music(caminho_geral):
     return musicas
 
 def info_display(window,musica,posicao):
-    window['-name_music-'].update(os.path.basename(musica[posicao]))
+    nome_base = os.path.basename(musica[posicao])
+    convert = nome_base.split('-')
+    artista = convert[1].split('.')
+    window['-name_music-'].update(convert[0])
+    window['-artista-'].update(artista[0])
 
 def tempo_music(window,musica):
     
@@ -83,7 +95,3 @@ def play_music(pasta_sound):
 
 def pause_music():
     mixer.music.pause()
-
-def continua_play(tempo):
-    mixer.music.set_pos(tempo)
-    mixer.music.play()
